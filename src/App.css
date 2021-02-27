@@ -1,0 +1,17 @@
+.headerLink{
+  color: rgba(49, 48, 48, 0.61);
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  margin-right: 1em;
+}
+.formCont{
+  border: 2px solid black;
+  /* color: rgba(220, 220, 220, 0.801); */
+}
+/* .from{
+  background: url('./images/from.png') no-repeat ;
+  background-size:10px 10px ;
+ 
+
+} */
