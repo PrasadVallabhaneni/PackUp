@@ -50,6 +50,31 @@ width: 100%;
 .col2{
   padding: 20px;
 }
+
+.time{
+  color: grey !important;
+}
+.duration{
+  color: grey !important;
+}
+.departFlights{
+  text-align: center;
+  font-size: 20px;
+}
+.returnFlights{
+  text-align: center;
+  font-size: 20px;
+}
+.cols{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.dCol{
+  text-align: center;
+}
+.rCol{
+  text-align: center;
+}
 @media only screen and (max-width: 1050px){
 .fromHeader{
   font-size: 15px;
@@ -83,6 +108,24 @@ width: 100%;
 .col2{
   text-align: center;
   padding: 0px;
+}
+.departFlights{
+    font-size: 17px !important;
+ 
+}
+
+.returnFlights{
+     font-size: 17px !important;
+
+}
+.time{
+  font-size: 10px !important;
+}
+.dCol{
+  padding: 0px 3px 0px 0px !important;
+}
+.rCol{
+  padding: 0px 0px 0px 3px !important;
 }
 }
 
