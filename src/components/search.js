@@ -14,7 +14,7 @@ const Search = () => {
     return (
       <Container className="formCont">
         <Row>
-          <Col xs={12} style={{ textAlign: "center" }}>
+          <Col xs={12} style={{ textAlign: "center",margin:'0% 0% 3% 0%'}}>
             <button
               type="button"
               class={!twoWay ? "btn btn-primary " : "btn btn-outline-primary"}
@@ -33,6 +33,7 @@ const Search = () => {
             </button>
           </Col>
         </Row>
+        
         <Row>
           <Col md={1}></Col>
           <Col md={10}>
@@ -89,7 +90,7 @@ const Search = () => {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={6} >
                   <DatePicker date={date} onDateChange={setDate} locale={enGB}>
                     {({ inputProps, focused }) => (
                       <input
@@ -110,24 +111,30 @@ const Search = () => {
                   </DatePicker>
                 </Col>
                 <Col xs={12} md={6}>
-                    {twoWay?<DatePicker date={returnDate} onDateChange={setReturnDate} locale={enGB}>
-                    {({ inputProps, focused }) => (
-                      <input
-                        className={"input" + (focused ? " -focused" : "")}
-                        {...inputProps}
-                        style={{
-                          background: `url(${calender}) no-repeat `,
-                          backgroundSize: "25px 25px",
-                          paddingLeft: "70px",
-                          height: "50px",
-                          backgroundPosition: "5% 50%",
-                          width: "100%",
-                          border: "1px solid rgba(220, 220, 220, 0.801)",
-                        }}
-                        placeholder="Return Date"
-                      />
-                    )}
-                  </DatePicker>:null}
+                  {twoWay ? (
+                    <DatePicker
+                      date={returnDate}
+                      onDateChange={setReturnDate}
+                      locale={enGB}
+                    >
+                      {({ inputProps, focused }) => (
+                        <input
+                          className={"input" + (focused ? " -focused" : "")}
+                          {...inputProps}
+                          style={{
+                            background: `url(${calender}) no-repeat `,
+                            backgroundSize: "25px 25px",
+                            paddingLeft: "70px",
+                            height: "50px",
+                            backgroundPosition: "5% 50%",
+                            width: "100%",
+                            border: "1px solid rgba(220, 220, 220, 0.801)",
+                          }}
+                          placeholder="Return Date"
+                        />
+                      )}
+                    </DatePicker>
+                  ) : null}
                 </Col>
               </Row>
               <Row style={{ marginTop: "17px" }}>

@@ -6,12 +6,83 @@
   margin-right: 1em;
 }
 .formCont{
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  position: relative;
+  top: 40%;
+  background-color: #f8f7f9ef;
+  border-radius: 20px;
+  padding: 2%;
+  box-shadow:0 0 10px rgba(83, 83, 83, 0.466);
   /* color: rgba(220, 220, 220, 0.801); */
 }
-/* .from{
-  background: url('./images/from.png') no-repeat ;
-  background-size:10px 10px ;
- 
+input{
+  background-color: white !important;
+}
+.body{
+background : url(https://pix10.agoda.net/geo/city/17193/1_17193_02.jpg?s=1920x822);
+background-position: 30% 50%;
+height: 50vh;
+border-bottom-left-radius: 40px;
+border-bottom-right-radius: 40px;
+/* width: 100vw;  */
 
+}
+.results{
+background : #3F80DF;
+min-height: 89vh;
+width: 100%;
+}
+.fromHeader{
+  font-size: 20px;
+  color: white;
+  font-weight: 550;
+  margin-right: 3%;
+}
+.arrow{
+  color: white;
+  font-size: 18px;
+  margin-right: 3%;
+}
+.col1{
+  text-align: end;
+  padding: 20px;
+}
+.col2{
+  padding: 20px;
+}
+@media only screen and (max-width: 1050px){
+.fromHeader{
+  font-size: 15px;
+}
+/* .col1{
+  text-align: center;
 } */
+}
+
+@media only screen and (max-width: 767px){
+.fromHeader{
+  font-size: 15px;
+}
+.col1{
+  text-align: center;
+  padding: 5px;
+}
+.col2{
+  text-align: center;
+  padding: 0px;
+}
+}
+@media only screen and (max-width: 500px){
+.fromHeader{
+  font-size: 15px;
+}
+.col1{
+  text-align: center;
+  padding: 5px;
+}
+.col2{
+  text-align: center;
+  padding: 0px;
+}
+}
+
