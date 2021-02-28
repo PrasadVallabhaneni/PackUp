@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import Search from "./search";
-const FlightInfo = () => {
+const FlightInfo = ({data}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+const [res,setRes]=useState(data)
+  useEffect(()=>{
+       setRes(data);
+       console.log(res)
+  },[data,show])
   return (
     <div>
       <Row>
@@ -19,25 +23,37 @@ const FlightInfo = () => {
                 fontSize: "15px",
               }}
             ></ion-icon>
-            &nbsp;&nbsp;Mumbai (BOM)
+            &nbsp;&nbsp;{res.from}
           </span>
           <span className="arrow">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
+            {res.return == "Invalid Date" ? (
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            ) : (
+              <ion-icon name="swap-horizontal-outline"></ion-icon>
+            )}
           </span>
           <span className="fromHeader">
             <ion-icon name="location-outline" size="small"></ion-icon>
-            &nbsp;&nbsp;Hyderabad (HYD)
+            &nbsp;&nbsp;{res.to}
           </span>
         </Col>
         <Col sm={12} md={6} className="col2">
           <span className="fromHeader">
             <ion-icon name="calendar-outline" size="small"></ion-icon>
-            &nbsp;&nbsp;Depart on Sat, 27 Feb
+            &nbsp;&nbsp;
+            {new Date(res.departure)
+              .toString()
+              .split(" ")
+              .slice(0, 4)
+              .join(" ")}
           </span>
-          <span className="fromHeader">
-            <ion-icon name="calendar-outline" size="small"></ion-icon>
-            &nbsp;&nbsp;Return on Sat, 27 Feb
-          </span>
+          {res.return == "Invalid Date" ? null : (
+            <span className="fromHeader">
+              <ion-icon name="calendar-outline" size="small"></ion-icon>
+              &nbsp;&nbsp;
+              {new Date(res.return).toString().split(" ").slice(0, 4).join(" ")}
+            </span>
+          )}
           <span>
             <button
               type="submit"
@@ -53,7 +69,7 @@ const FlightInfo = () => {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Search />
+        <Search show={setShow} />
       </Modal>
     </div>
   );

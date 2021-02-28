@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,useContext,useLocation} from 'react'
 import { Container, Row, Col } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import flight from '../images/from.png'
 import location from '../images/location.png'
 import calender from '../images/calender.png'
@@ -7,19 +8,53 @@ import adults from '../images/adults.png'
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
 import "react-nice-dates/build/style.css";
-const Search = () => {
+import { submitData } from "../App";
+const Search = (props) => {
      const [date, setDate] = useState();
      const [returnDate,setReturnDate]=useState();
-     const [twoWay,setWay]=useState(false)
+     const [twoWay,setWay]=useState(false);
+     const [redirect,setRedirect]=useState(false)
+     const [userData, setUserData] = useState({
+       from: "",
+       to: "",
+       return:returnDate,
+       departure: new Date(date),
+       total: 1,
+     });
+    const submit = useContext(submitData); 
+   const onChange=(e)=>{
+     setRedirect(false)
+           setUserData({...userData,[e.target.id]:e.target.value})
+   } 
+
+   const onSubmit=(e)=>{
+     e.preventDefault();
+     
+     submit(userData);
+     setRedirect(true)
+      if(props.show){
+        props.show(false)
+      }
+   }
+   useEffect(()=>{
+
+       setUserData({
+         ...userData,
+         ["departure"]: new Date(date),
+         ["return"]: new Date(returnDate),
+       });
+   },[date,returnDate])
     return (
       <Container className="formCont">
+      {redirect && <Redirect  to={'/flights'}/>}
         <Row>
-          <Col xs={12} style={{ textAlign: "center",margin:'0% 0% 3% 0%'}}>
+          <Col xs={12} style={{ textAlign: "center", margin: "0% 0% 3% 0%" }}>
             <button
               type="button"
               class={!twoWay ? "btn btn-primary " : "btn btn-outline-primary"}
-              style={{ width: "100px", marginRight: "2em" }}
-              onClick={() => setWay(false)}
+              style={{ width: "100px", marginRight: "2rem" }}
+              onClick={() => {setWay(false);
+              setReturnDate();}}
             >
               One-Way
             </button>
@@ -33,11 +68,11 @@ const Search = () => {
             </button>
           </Col>
         </Row>
-        
+
         <Row>
           <Col md={1}></Col>
           <Col md={10}>
-            <form className="form">
+            <form className="form" onSubmit={onSubmit}>
               <Row>
                 <Col xs={12} md={6}>
                   <div class="form-group">
@@ -45,9 +80,10 @@ const Search = () => {
                       list="flights"
                       type="text"
                       class="form-control"
-                      id="name"
+                      id="from"
                       aria-describedby="emailHelp"
                       placeholder="Flying From"
+                      value={userData.from}
                       style={{
                         background: `url(${flight}) no-repeat `,
                         backgroundSize: "30px 30px",
@@ -55,16 +91,17 @@ const Search = () => {
                         height: "50px",
                         backgroundPosition: "5% 50%",
                       }}
+                      onChange={onChange}
                       required
                     />
                     <datalist id="flights">
-                      <option value="Bangalore" />
-                      <option value="Chennai" />
-                      <option value="Delhi" />
-                      <option value="Mumbai" />
-                      <option value="Hyderabad" />
-                      <option value="Kochi" />
-                      <option value="Goa" />
+                      <option value="BLR Bangalore"/>
+                      <option value="MAA Chennai" />
+                      <option value="DEL Delhi" />
+                      <option value="BOM Mumbai" />
+                      <option value="HYD Hyderabad" />
+                      <option value="COK Kochi" />
+                      <option value="GOI Goa" />
                     </datalist>
                   </div>
                 </Col>
@@ -74,9 +111,10 @@ const Search = () => {
                       list="flights"
                       type="text"
                       class="form-control"
-                      id="name"
+                      id="to"
                       aria-describedby="emailHelp"
                       placeholder="Flying To"
+                      value={userData.to}
                       style={{
                         background: `url(${location}) no-repeat `,
                         backgroundSize: "25px 25px",
@@ -84,13 +122,14 @@ const Search = () => {
                         height: "50px",
                         backgroundPosition: "5% 50%",
                       }}
+                      onChange={onChange}
                       required
                     />
                   </div>
                 </Col>
               </Row>
               <Row>
-                <Col xs={12} md={6} >
+                <Col xs={12} md={6}>
                   <DatePicker date={date} onDateChange={setDate} locale={enGB}>
                     {({ inputProps, focused }) => (
                       <input
@@ -106,6 +145,7 @@ const Search = () => {
                           border: "1px solid rgba(220, 220, 220, 0.801)",
                         }}
                         placeholder="Depart Date"
+                        
                       />
                     )}
                   </DatePicker>
@@ -143,7 +183,7 @@ const Search = () => {
                     <select
                       multiple=""
                       class="form-control"
-                      id="exampleSelect2"
+                      id="total"
                       style={{
                         background: `url(${adults}) no-repeat `,
                         backgroundSize: "25px 25px",
@@ -153,12 +193,13 @@ const Search = () => {
                         webkitAppearance: "none",
                         appearance: "none",
                       }}
+                      onChange={onChange}
                     >
-                      <option>1 Passenger</option>
-                      <option>2 Passengers</option>
-                      <option>3 Passengers</option>
-                      <option>4 Passengers</option>
-                      <option>5 Passengers</option>
+                      <option value='1'>1 Passenger</option>
+                      <option value='2'>2 Passengers</option>
+                      <option value='3'>3 Passengers</option>
+                      <option value='4'>4 Passengers</option>
+                      <option value='5'>5 Passengers</option>
                     </select>
                   </div>
                 </Col>
