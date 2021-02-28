@@ -24,9 +24,20 @@ background-position: 30% 50%;
 height: 50vh;
 border-bottom-left-radius: 40px;
 border-bottom-right-radius: 40px;
+text-align: center;
 /* width: 100vw;  */
 
 }
+.descr{
+  color:rgb(253, 253, 253);
+  position: relative;
+  font-weight: bolder;
+  top: 6rem;
+  font-size: 30px;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+}
+
 .results{
 background : #3F80DF;
 min-height: 89vh;

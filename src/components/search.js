@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useContext,useLocation} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import { Container, Row, Col } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import flight from '../images/from.png'
@@ -9,6 +9,7 @@ import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
 import "react-nice-dates/build/style.css";
 import { submitData } from "../App";
+import {resultData} from "../App";
 const Search = (props) => {
      const [date, setDate] = useState();
      const [returnDate,setReturnDate]=useState();
@@ -22,6 +23,7 @@ const Search = (props) => {
        total: 1,
      });
     const submit = useContext(submitData); 
+    const formData=useContext(resultData);
    const onChange=(e)=>{
      setRedirect(false)
            setUserData({...userData,[e.target.id]:e.target.value})
@@ -29,7 +31,6 @@ const Search = (props) => {
 
    const onSubmit=(e)=>{
      e.preventDefault();
-     
      submit(userData);
      setRedirect(true)
       if(props.show){

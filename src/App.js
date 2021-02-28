@@ -8,6 +8,7 @@ import FlightResults from "./components/flightResults";
 import { FlightsData } from "./Data/flightsData";
 export const submitData = React.createContext();
 export const resultData=React.createContext();
+
 function App() {
   const flights = FlightsData;
   const [formData,setFormData]=useState();
@@ -91,6 +92,11 @@ const getResults=(flightResults,from,date)=>{
           <Header />
           <Route exact path="/">
             <div className="body">
+              <p className="descr">
+                Travel the way to happiness. <br />
+                Search book and goo..
+                <ion-icon name="airplane"></ion-icon>
+              </p>
               <Search />
             </div>
           </Route>

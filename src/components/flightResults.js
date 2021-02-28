@@ -8,7 +8,7 @@ const data=useContext(resultData);
 // const [result,setResult]=useState(data);
 const [departResult,setDepartResults]=useState(data[1])
 const [returnResult, setReturnResults] = useState(data[2]);
-const [range,setRange]=useState([1000,10000]);
+const [range,setRange]=useState([1000,50000]);
 const rangeChange=(val)=>{
       setRange(val)
 }
@@ -70,7 +70,7 @@ const rangeChange=(val)=>{
                                     fontSize: "15px",
                                   }}
                                 ></ion-icon>
-                                &nbsp;&nbsp;
+                                &nbsp;
                                 {ele.Departure.location.split(" ")[0]} <br />
                                 <span className="time">
                                   ({ele.Departure.time})
@@ -90,7 +90,7 @@ const rangeChange=(val)=>{
                                   name="location-outline"
                                   size="small"
                                 ></ion-icon>
-                                &nbsp;&nbsp;
+                                &nbsp;
                                 {ele.Arrival.location.split(" ")[0]} <br />
                                 <span className="time">
                                   ({ele.Arrival.time})
@@ -143,7 +143,7 @@ const rangeChange=(val)=>{
                                         fontSize: "15px",
                                       }}
                                     ></ion-icon>
-                                    &nbsp;&nbsp;
+                                    &nbsp;
                                     {ele.Departure.location.split(" ")[0]}
                                     <br />
                                     <span className="time">
@@ -164,7 +164,7 @@ const rangeChange=(val)=>{
                                       name="location-outline"
                                       size="small"
                                     ></ion-icon>
-                                    &nbsp;&nbsp;
+                                    &nbsp;
                                     {ele.Arrival.location.split(" ")[0]} <br />
                                     <span className="time">
                                       ({ele.Arrival.time})
